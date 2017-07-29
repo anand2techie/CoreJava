@@ -1,4 +1,4 @@
-package com.Inheritance;
+package com.oops;
 
 public class Bike extends RemodelledBicycle {
 

@@ -1,25 +1,28 @@
-package com.Inheritance;
+package com.oops;
 
 public class BicycleMain {
 
 	
 	public static void main(String[] args)
 	{
-		
 		System.out.println("Properties of Bicycle:");
-		Bicycle bicycle=new Bicycle();
+		//Bicycle bicycle=new Bicycle(); If a class is being an abstract, You can't invoke that class.
 		//20,Atlas,false,2
-		System.out.println(bicycle.brand);
+		/*System.out.println(bicycle.brand);
 		System.out.println(bicycle.speed);
 		System.out.println(bicycle.withGear);
 		System.out.println(bicycle.noOfWheels);
-		bicycle.ridingAtRoad();
+		bicycle.ridingAtRoad();*/
 		//bicycle.ridingAtMountains(); You can't use child class' properties when parent class is the reference
+		
+		Bicycle bicycle=new Bicycle();
+		
+		System.out.println(bicycle.brand); //need to check!!!
 		
 		System.out.println("Properties of RemodelledBicycle:");
 		
 		//same class as a Reference
-		RemodelledBicycle remodelledBicycle=new RemodelledBicycle();
+		RemodelledBicycle remodelledBicycle=new RemodelledBicycle(40,"NSA",true);
 		//40,NSA,true,????
 		System.out.println(remodelledBicycle.brand); //override
 		System.out.println(remodelledBicycle.speed); //override
@@ -40,7 +43,7 @@ public class BicycleMain {
 				System.out.println(remodelledBicycleWithParentRef.withGear); //override
 				System.out.println(remodelledBicycleWithParentRef.noOfWheels); //re-usability
 				remodelledBicycleWithParentRef.ridingAtRoad();
-				//remodelledBicycleWithParentRef.ridingAtMountains();All the child class' prop will be hidden
+				//remodelledBicycleWithParentRef.ridingAtMountains();//All the child class' prop will be hidden
 				remodelledBicycleWithParentRef.xxxMethod(); //possible - You can use parent class' properties when child class is the reference	
 				
 	//RemodelledBicycle bicycleWIthChildRef=new Bicycle(); not possible

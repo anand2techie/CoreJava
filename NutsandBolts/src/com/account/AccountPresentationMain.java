@@ -1,5 +1,9 @@
 package com.account;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class AccountPresentationMain {
 
 	public static void main(String[] args) {
@@ -26,4 +30,30 @@ public class AccountPresentationMain {
 		}
 	}
 
+	/*	private static float readAccInfoFromConsole() {
+		// Create an ISR object for reading from a console
+				InputStreamReader inputStreamReader = new InputStreamReader(System.in); // char
+																						// by
+																						// char
+
+				// Create a BR object for reading from an ISR object
+				BufferedReader bufferedReader = new BufferedReader(inputStreamReader); // line
+																						// by
+																						// line
+
+				System.out.println("Enter account balance!:");
+				String linesRead = "";
+				float accountBalance = 0;
+				try {
+					while ((linesRead = bufferedReader.readLine()) != null) {
+						accountBalance=new Float(linesRead);
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				return accountBalance;
+	}
+*/
 }

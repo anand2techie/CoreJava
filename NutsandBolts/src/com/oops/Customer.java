@@ -10,6 +10,7 @@ public class Customer {
 	private long customerAccBalance;
 	private String customerAddress;
 	private List<String> nominees;
+	private boolean isValidCustomer=true;
 	
 	public Customer() {
 		// TODO Auto-generated constructor stub
@@ -22,6 +23,18 @@ public class Customer {
 		this.customerAddress=customerAddress;
 		this.nominees=nominees;
 	}
+	
+	public Customer(String customerName,int customerId,long customerAccBalance,String customerAddress,List<String> nominees,boolean isValidCustomer) {
+		// TODO Auto-generated constructor stub
+		this.customerId=customerId;
+		this.customerName=customerName;
+		this.customerAccBalance=customerAccBalance;
+		this.customerAddress=customerAddress;
+		this.nominees=nominees;
+		this.isValidCustomer=isValidCustomer;
+	}
+	
+	
 	
 	public int getCustomerId() {
 		return customerId;
@@ -54,12 +67,23 @@ public class Customer {
 		this.nominees = nominees;
 	}
 	
-	//you have to override two methods:
+	
+	public boolean isValidCustomer() {
+		return isValidCustomer;
+	}
+	public void setValidCustomer(boolean isValidCustomer) {
+		this.isValidCustomer = isValidCustomer;
+	}
 	@Override
-	public boolean equals(Customer customerObj) {
+	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub
-		return customerObj.getCustomerId()==this.getCustomerId();
+		return ((Customer) obj).getCustomerAddress()==this.customerAddress;
 	}
 	
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return this.customerAddress.hashCode();
+	}
 }
 

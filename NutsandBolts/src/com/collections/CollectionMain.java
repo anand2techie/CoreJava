@@ -266,7 +266,7 @@ public class CollectionMain {
 		// pre-defined nominees list
 		String[] nomineesArrayForCharles = { "Dinesh", "Tharun" };
 		String[] nomineesArrayFoDavid = { "Jeeva", "Ram" };
-		String[] nomineesArrayForArun = { "Gokul", "Ananth" };
+		String[] nomineesArrayForArun = { "Jeeva", "Ram" };
 		String[] nomineesArrayForDivya = { "Dinesh", "Tharun" };
 
 		// individual customer objects wth diff data
@@ -284,26 +284,48 @@ public class CollectionMain {
 
 		// System.out.println(customersList);
 
-		Iterator<Customer> customersListItr = customersList.listIterator();
+		ListIterator<Customer> customersListItr = customersList.listIterator();
 
-		int count = 0;
 		// iterating the customersList
 		while (customersListItr.hasNext()) {
 			Customer customerObj = customersListItr.next();
-
-			if (customerObj.isValidCustomer()) {
-				System.out.println(customerObj.getCustomerName());
+			if (customerObj.isValidCustomer() == null || customerObj.isValidCustomer()) {
 				// retrieving nominees list back
-				List<String> nomineesList = customerObj.getNominees();
-
-				Iterator<Customer> subsequentCustomerListItr = customersList.listIterator(++count);
-				
-				while (subsequentCustomerListItr.hasNext()) {
-					Customer subsequentCustomerObj = subsequentCustomerListItr.next();
-					if (nomineesList.equals(subsequentCustomerObj.getNominees())) {
-						subsequentCustomerObj.setValidCustomer(false);
-					}
+				List<String> nomineesListOfCurrentCustomer = customerObj.getNominees();
+				int nextIndex = customersListItr.nextIndex();
+				if (nomineesListOfCurrentCustomer != null && customersList != null) {
+					setValidFlagForCustomers(customersList, nextIndex, nomineesListOfCurrentCustomer);
 				}
+				
+				//setting true to validCustomer. Since we iterate only valid ones, once we're here.
+				customerObj.setValidCustomer(true);
+			}
+		}
+		
+		printCustomerWithValidity(customersList);
+	}
+
+	private static void printCustomerWithValidity(List<Customer> customersList) {
+		// TODO Auto-generated method stub
+		for(Customer customerObj:customersList)
+		{
+			System.out.println(customerObj);
+		}
+	}
+
+	/**
+	 * Method that sets valid flag for each customers based on the nominees list getting duplicated from earlier customers
+	 * @param customersList
+	 * @param nextIndex
+	 * @param nomineesListOfCurrentCustomer
+	 */
+	private static void setValidFlagForCustomers(List<Customer> customersList, int nextIndex,
+			List<String> nomineesListOfCurrentCustomer) {
+		Iterator<Customer> subsequentCustomerListItr = customersList.listIterator(nextIndex);
+		while (subsequentCustomerListItr.hasNext()) {
+			Customer subsequentCustomerObj = subsequentCustomerListItr.next();
+			if (nomineesListOfCurrentCustomer.equals(subsequentCustomerObj.getNominees())) {
+				subsequentCustomerObj.setValidCustomer(false);
 			}
 		}
 	}

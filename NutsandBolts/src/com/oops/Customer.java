@@ -10,7 +10,7 @@ public class Customer {
 	private long customerAccBalance;
 	private String customerAddress;
 	private List<String> nominees;
-	private boolean isValidCustomer=true;
+	private Boolean isValidCustomer;
 	
 	public Customer() {
 		// TODO Auto-generated constructor stub
@@ -24,7 +24,7 @@ public class Customer {
 		this.nominees=nominees;
 	}
 	
-	public Customer(String customerName,int customerId,long customerAccBalance,String customerAddress,List<String> nominees,boolean isValidCustomer) {
+	public Customer(String customerName,int customerId,long customerAccBalance,String customerAddress,List<String> nominees,Boolean isValidCustomer) {
 		// TODO Auto-generated constructor stub
 		this.customerId=customerId;
 		this.customerName=customerName;
@@ -68,10 +68,10 @@ public class Customer {
 	}
 	
 	
-	public boolean isValidCustomer() {
+	public Boolean isValidCustomer() {
 		return isValidCustomer;
 	}
-	public void setValidCustomer(boolean isValidCustomer) {
+	public void setValidCustomer(Boolean isValidCustomer) {
 		this.isValidCustomer = isValidCustomer;
 	}
 	@Override
@@ -84,6 +84,12 @@ public class Customer {
 	public int hashCode() {
 		// TODO Auto-generated method stub
 		return this.customerAddress.hashCode();
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "valid flag for "+customerName+" is "+isValidCustomer;
 	}
 }
 

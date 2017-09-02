@@ -77,13 +77,20 @@ public class Customer {
 	@Override
 	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub
-		return ((Customer) obj).getCustomerAddress()==this.customerAddress;
+		if(obj!=null)
+		{
+		return ((Customer) obj).getCustomerId()==this.customerId;
+		}
+		else
+		{
+		return false;
+		}
 	}
 	
 	@Override
 	public int hashCode() {
 		// TODO Auto-generated method stub
-		return this.customerAddress.hashCode();
+		return this.customerId;
 	}
 	
 	@Override

@@ -8,6 +8,7 @@ package com.collections;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -51,7 +52,21 @@ public class CollectionMain {
 
 		// learnCollectionofObjects();
 
-		learnCollectionofObjects();
+		//learnCollectionofObjects();
+		
+		List<Integer> numbersList=new ArrayList<Integer>();
+		numbersList.add(100);
+		numbersList.add(30);
+		numbersList.add(160);
+		numbersList.add(2);
+		
+		System.out.println("Before sorting: ");
+		System.out.println(numbersList);
+		sortListOfIntegers(numbersList);
+		System.out.println("After sorting: ");
+		System.out.println(numbersList);
+		
+		doSetOperations();
 	}
 
 	private static Set<String> createALinkedHashSetOfString() {
@@ -71,12 +86,12 @@ public class CollectionMain {
 		// TODO Auto-generated method stub
 		// Set dummySet=new Set(); this is not possible.
 
-		// addElementsToSet();
+		addElementsToSet();
 
 		// clearSetValues(customerLocationSet);
 	}
 
-	private static void addElementsToSet(Set<String> customerLocationAsSet) {
+	private static void addElementsToSet() {
 		// adding values to the set
 		customerLocationAsHashSet.add("Chennai");
 		customerLocationAsHashSet.add("Bengaluru");
@@ -372,4 +387,16 @@ public class CollectionMain {
 		}
 
 	}
+	
+	static void sortListOfIntegers(List<Integer> numbersList)
+	{
+		Collections.sort(numbersList); //default sorting order: Ascending
+	}
+	
+	/* sorting of set is not available in Collections class
+	 * static void sortSetOfString()
+	{
+		Collections.so
+	}*/
+	
 }

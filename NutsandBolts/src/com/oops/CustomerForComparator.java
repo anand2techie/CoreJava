@@ -2,7 +2,7 @@ package com.oops;
 
 import java.util.List;
 
-public class Customer implements Comparable<Customer>{
+public class CustomerForComparator{
 
 	//instance variables
 	private int customerId;
@@ -12,10 +12,10 @@ public class Customer implements Comparable<Customer>{
 	private List<String> nominees;
 	private Boolean isValidCustomer;
 	
-	public Customer() {
+	public CustomerForComparator() {
 		// TODO Auto-generated constructor stub
 	}
-	public Customer(String customerName,int customerId,long customerAccBalance,String customerAddress,List<String> nominees) {
+	public CustomerForComparator(String customerName,int customerId,long customerAccBalance,String customerAddress,List<String> nominees) {
 		// TODO Auto-generated constructor stub
 		this.customerId=customerId;
 		this.customerName=customerName;
@@ -24,7 +24,7 @@ public class Customer implements Comparable<Customer>{
 		this.nominees=nominees;
 	}
 	
-	public Customer(String customerName,int customerId,long customerAccBalance,String customerAddress,List<String> nominees,Boolean isValidCustomer) {
+	public CustomerForComparator(String customerName,int customerId,long customerAccBalance,String customerAddress,List<String> nominees,Boolean isValidCustomer) {
 		// TODO Auto-generated constructor stub
 		this.customerId=customerId;
 		this.customerName=customerName;
@@ -79,7 +79,7 @@ public class Customer implements Comparable<Customer>{
 		// TODO Auto-generated method stub
 		if(obj!=null)
 		{
-		return ((Customer) obj).getCustomerId()==this.customerId;
+		return ((CustomerForComparator) obj).getCustomerId()==this.customerId;
 		}
 		else
 		{
@@ -97,25 +97,6 @@ public class Customer implements Comparable<Customer>{
 	public String toString() {
 		// TODO Auto-generated method stub
 		return "valid flag for "+customerName+" is "+isValidCustomer;
-	}
-	
-	
-	@Override
-	public int compareTo(Customer customerObj) {
-		// TODO Auto-generated method stub
-		
-		int returnValue=0;
-		
-		if(customerObj.getCustomerAccBalance()>this.customerAccBalance)
-		{
-			returnValue=-1;
-		}
-		else if(customerObj.getCustomerAccBalance()<this.customerAccBalance)
-		{
-			returnValue=1;
-		}
-		
-		return returnValue;
 	}
 }
 

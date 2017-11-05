@@ -1,13 +1,22 @@
 package com.oops;
 
-public class BankAccount {
+import java.io.Serializable;
+
+public class BankAccount implements Serializable{
 
 	private int accountId;
 	private String bank;
 	private char accountType;
 	private int accountBalance;
 	private String accountBranch;
+	private transient String bankKey; //A sensitive data. Transient - skips serialization
 	
+	public String getBankKey() {
+		return bankKey;
+	}
+	public void setBankKey(String bankKey) {
+		this.bankKey = bankKey;
+	}
 	//provide getter & setter methods for all the fields
 	public int getAccountId() {
 		return accountId;

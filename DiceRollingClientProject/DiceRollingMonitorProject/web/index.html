@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="mqttws31.js"></script>
+<script src="loader.js"></script>
+<meta charset="UTF-8">
+
+<script>
+    
+     //loads guage, core chart & line chart
+     google.charts.load('current', {'packages':['gauge','corechart', 'line']});
+     
+     var linedata;
+    var linechart;
+    var lineoptions;
+    
+    var map = new Object(); // or var map = {};
+    
+    //set value for keys from 2 to 12 as 0.
+    for(var mapKey=2;mapKey<=12;mapKey++)
+    {
+        map[mapKey] = 0;
+    }
+
+    var dieRollCount=1;
+    
+    /**
+     * Function to draw chart of various types for every die roll
+     * @param {type} die1
+     * @param {type} die2
+     * @returns {undefined}
+     */
+      function drawChart(die1,die2) {
+        var sumOfDie=die1+die2;
+        
+        //initializing google chart with label & values
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Die 1', die1],
+          ['Die 2', die2]
+          
+        ]);
+        
+         var dataFor3rdDice = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Sum', sumOfDie]
+        ]);
+
+        //setting options
+        var options = {
+          width: 400, height: 150,
+          min:1,max:6,
+          
+          majorTicks:[1,2,3,4,5,6]
+          
+        };
+        
+        //instantiate google chart for a div
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+        //draw chart with options set
+        chart.draw(data, options);
+        
+        
+        var chartFor3rdDice = new google.visualization.Gauge(document.getElementById('chart_div2'));
+        
+        options = {
+          width: 400, height: 150,
+          min:2,max:12,
+          
+          majorTicks:[2,3,4,5,6,7,8,9,10,11,12]
+        };
+        
+        chartFor3rdDice.draw(dataFor3rdDice, options);
+        
+      //Creates the initial data for the line graph
+      linedata = new google.visualization.DataTable();
+     linedata.addColumn('number', 'X');
+      linedata.addColumn('number', 'Relative Frequency');
+     
+      //calculate the frequencey of dice sum on every roll and add it to line chart rows
+      for(var dieNum=2;dieNum<12;dieNum++)
+      {
+        if(sumOfDie===dieNum)
+        {
+           map[dieNum]+=1;
+        }
+        var frequency=map[dieNum]/dieRollCount;
+        console.log(frequency);
+        linedata.addRows([[dieNum,frequency]]);  
+      }
+
+      //Sets cosmetic options for the line graph
+      lineoptions = {
+      hAxis: {
+        title: 'X',
+        viewWindow: {
+            max:12,
+            min:2
+          },
+          gridlines: { count: 10 }
+        },
+        vAxis: {
+            viewWindow: {
+            max:1.0,
+            min:0
+          },
+          title: 'Y'
+          }
+        };
+        
+        //Instantiates the gauges and the location
+      linechart = new google.visualization.LineChart(document.getElementById('line_div'));
+      //Draws the line chart
+     
+      linechart.draw(linedata, lineoptions);
+      dieRollCount++;
+      }
+      
+      /**
+       * Function to draw chart for average
+       * @param {type} avgDie
+       * @returns {undefined}
+       */
+       function drawChartForAvg(avgDie) {
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Average', avgDie]
+        ]);
+
+         var optionsFor4thDice = {
+          width: 400, height: 150,
+          min:2,max:12,
+          minorTicks:2,
+          majorTicks:[2,3,4,5,6,7,8,9,10,11,12]
+        };
+
+        var chartFor4thDice = new google.visualization.Gauge(document.getElementById('chart_div3'));
+        
+       /* optionsFor4thDice = {
+          width: 400, height: 200,
+          min:2,max:12,
+          minorTicks:2,
+          majorTicks:[2,3,4,5,6,7,8,9,10,11,12]
+        };*/
+        
+        chartFor4thDice.draw(data, optionsFor4thDice);
+        
+      }
+        
+           var loc = {'hostname' : 'localhost', 'port' : '9002' };
+           // Creates a client instance with a unique ID
+           client = new Paho.MQTT.Client(loc.hostname, Number(loc.port), 'DiceRolling');
+
+           // sets callback handlers
+           client.onConnectionLost = onConnectionLost;
+           client.onMessageArrived = onMessageArrived;
+           
+           // connects the client
+           client.connect({onSuccess:onConnect});
+
+           // called afer the the client sucessfuly connects
+           function onConnect() {
+             // Once a connection has been made, subscribes
+              client.subscribe('Die', {qos: 2});
+             console.log("connection established, subscribing to /topic");
+             
+            }
+
+            // called when the client loses its connection
+            function onConnectionLost(responseObject) {
+               if (responseObject.errorCode !== 0) {
+                    console.log("onConnectionLost:"+responseObject.errorMessage);
+               }
+            }
+
+            // called when a message arrives
+            var sumOfDie=0;
+            var dieCount =0;
+            
+            function onMessageArrived(message) {
+              console.log("onMessageArrived:"+message.payloadString);
+              var str=message.payloadString;
+              var res = str.split(" ");
+              //var sumOfDie=0;
+              
+              //
+               for(count = 0; count < res.length; count++){
+                    var diceData = JSON.parse(res[count]);
+                    var die1 = diceData["Die1"];
+                    var die2 = diceData["Die2"];
+                    sumOfDie=sumOfDie+die1+die2;
+                    
+                    //call drawChart function
+                    drawChart(die1,die2);
+            }
+            dieCount =dieCount+1;
+            console.log("dieCount"+dieCount);
+            console.log("sumOfDie"+dieCount);
+            console.log("die1"+die1);
+            console.log("die2"+die2);
+
+             //call drawChartForAvg function
+              drawChartForAvg(sumOfDie/dieCount);
+            }
+
+ 
+
+</script>
+<!-- Style for rectangular div -->
+<style>
+
+</style>
+
+<title>Title for You!</title>
+</head>
+<body>
+    
+    <div id="chart_div"></div>  <div id="chart_div2"></div>
+    <div id="chart_div3"></div> 
+    <div id="line_div"></div>
+
+</body>
+</html>

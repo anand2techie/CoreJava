@@ -54,7 +54,7 @@ public class CollectionMain {
 
 		//learnCollectionofObjects();
 		
-		List<Integer> numbersList=new ArrayList<Integer>();
+	/*	List<Integer> numbersList=new ArrayList<Integer>();
 		numbersList.add(100);
 		numbersList.add(30);
 		numbersList.add(160);
@@ -67,6 +67,8 @@ public class CollectionMain {
 		System.out.println(numbersList);
 		
 		doSetOperations();
+		*/
+		learnCollectionsClassMethods();
 	}
 
 	private static Set<String> createALinkedHashSetOfString() {
@@ -248,7 +250,9 @@ public class CollectionMain {
 								// --> Gokul
 		namesList.add("Ananth"); // it will be added to 1st index namesList: 0
 									// --> Gokul; 1 --> Ananth etc....
-		namesList.add("Ananth");
+		namesList.add("Ramya");
+		
+		namesList.add("Dave");
 
 		// printListValues();
 	}
@@ -371,7 +375,7 @@ public class CollectionMain {
 		customersSet.add(davidCustoomerObj);
 		customersSet.add(arunCustoomerObj);
 		customersSet.add(divyaCustoomerObj);
-
+		
 		// System.out.println(customersList);
 
 		Iterator<Customer> customersSetItr = customersSet.iterator();
@@ -399,4 +403,51 @@ public class CollectionMain {
 		Collections.so
 	}*/
 	
+	
+	
+	static void learnCollectionsClassMethods()
+	{
+		addElementsToList();
+		
+		//For binary search, first sort it and then use it.
+		//Collections.sort(namesList);
+		System.out.println(namesList);
+		//Arrays.binarySearch ---> ????
+		System.out.println(Collections.binarySearch(namesList, "Ananth")); //when u have multiple entries for a same element, o/p is not guaranteed
+		
+		//to get an empty collection ---> can be used to stop modification of List further
+		List<String> test=Collections.emptyList();
+		
+		List<String> test1=new ArrayList<String>();
+		test1.add("X");
+		test1.add("Y");
+		test1.add("Z");
+		Collections.fill(test1, "test1");
+		System.out.println(test1);
+		
+		//returns the frequency of an element present in an collection
+		int frequencyOfAnanth=Collections.frequency(namesList, "kdfkdkk");
+		
+		System.out.println(frequencyOfAnanth);
+		
+		//Collections.reverse(namesList);
+		
+		//System.out.println(namesList);
+		
+		//sort in descending
+		//Collections.sort(namesList,Collections.reverseOrder());
+		
+		//System.out.println(namesList);
+		
+		//+ve - forward; -ve - backward
+		Collections.rotate(namesList, 1);
+		
+		System.out.println(namesList);
+		
+		//Collections.swap(list,i,j);
+		
+		//Collections.
+		
+	}
 }
+

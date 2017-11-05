@@ -9,7 +9,7 @@ public class ArraysClassOverview {
 	{
 		List<String> incomingArrayList=Arrays.asList(incomingArray); //will convert array to list directly
 		
-		//without sorting, u will get incorrect o/p
+		//For binary search --> without sorting, u will get incorrect o/p
 		
 		Arrays.sort(incomingArray);
 		int searchOutput=Arrays.binarySearch(incomingArray,"Swathi");

@@ -1,8 +1,9 @@
 package com.oops;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Customer implements Comparable<Customer>{
+public class Customer implements Comparable<Customer>,Serializable{
 
 	//instance variables
 	private int customerId;
@@ -10,7 +11,30 @@ public class Customer implements Comparable<Customer>{
 	private long customerAccBalance;
 	private String customerAddress;
 	private List<String> nominees;
+	private List<AccountType> accountTypes;
 	private Boolean isValidCustomer;
+	
+	private BankAccount bankAccount;
+	
+	
+	public List<AccountType> getAccountTypes() {
+		return accountTypes;
+	}
+	public void setAccountTypes(List<AccountType> accountTypes) {
+		this.accountTypes = accountTypes;
+	}
+	public Boolean getIsValidCustomer() {
+		return isValidCustomer;
+	}
+	public void setIsValidCustomer(Boolean isValidCustomer) {
+		this.isValidCustomer = isValidCustomer;
+	}
+	public BankAccount getBankAccount() {
+		return bankAccount;
+	}
+	public void setBankAccount(BankAccount bankAccount) {
+		this.bankAccount = bankAccount;
+	}
 	
 	public Customer() {
 		// TODO Auto-generated constructor stub

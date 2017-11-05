@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="mqttws31.js"></script>
+
+<script>
+            //loc with hostname and port
+            var loc = {'hostname' : 'localhost', 'port' : '8000' };
+            
+            // Creates a client instance with a unique ID
+            client = new Paho.MQTT.Client(loc.hostname, Number(loc.port), 'naveenpub');
+                    
+            // sets callback handlers
+            client.onConnectionLost = onConnectionLost;
+
+            // connects the client
+            client.connect({onSuccess:onConnect});
+            
+            
+             //function to show the coordinates with X and Y attributes
+            function myFunction(e) {
+                var x = e.clientX;
+                var y = e.clientY;
+                var coor = "Coordinates: (" + x + "," + y + ")";
+
+                // Publish a Message
+                message = new Paho.MQTT.Message(coor);
+                message.destinationName = "/topic";
+                message.qos = 1;
+                message.retained=true;
+                //send a message
+                client.send(message);
+            }
+            // called when the client connects
+            function onConnect() {
+                console.log("Connection established");
+            }
+
+             // called when the client loses its connection
+             function onConnectionLost(responseObject) {
+                if (responseObject.errorCode !== 0) {
+                    console.log("onConnectionLost:"+responseObject.errorMessage);
+                }
+             }
+</script>
+<!-- Style for rectangular div -->
+<style>
+div {
+    width: 200px;
+    height: 100px;
+    border: 1px solid black;
+}
+</style>
+
+<title>Title for You!</title>
+</head>
+<body>
+
+<!-- A Div with onmousemove (for showing coordinates) and onmouseout (for clearing it out) function binded with it-->
+<div onmousemove="myFunction(event)" onmouseout="clearCoor()"></div>
+
+<p>Mouse over the rectangle above, and get the coordinates of your mouse pointer.</p>
+
+<p>When the mouse is moved over the div, the p element will display the horizontal and vertical coordinates of your mouse pointer, whose values are returned from the clientX and clientY properties on the 
+MouseEvent object.</p>
+
+<!-- Coordinates value will be shown here  -->
+<p id="demo"></p>
+
+
+</body>
+</html>

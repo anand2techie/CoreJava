@@ -1,6 +1,8 @@
 package com.oops;
 
-public interface DigitalBank {
+import java.io.Serializable;
+
+public interface DigitalBank extends Serializable{
 	
 	void digitalMethod1();
 	void digitalMethod2();

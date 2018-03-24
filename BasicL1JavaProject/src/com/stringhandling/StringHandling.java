@@ -1,5 +1,7 @@
 package com.stringhandling;
 
+import oops.Bicycle;
+
 public class StringHandling {
 
 	public static void main(String[] args) {
@@ -10,6 +12,8 @@ public class StringHandling {
 		String socialNetworkingSiteName2 = new String("acadSocial");
 		socialNetworkingSiteName2="acadSocialModified";
 		System.out.println(socialNetworkingSiteName2);
+		
+		Bicycle bicycle=new Bicycle();
 		/*System.out.println(socialNetworkingSiteName);
 		
 		System.out.println("Equality of 2 Strings:");

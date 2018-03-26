@@ -1,6 +1,6 @@
 package oops;
 
-public class Bicycle {
+public abstract class Bicycle implements IVehicle{
 
 	protected String color;
 	protected int noOfWheels;
@@ -14,20 +14,17 @@ public class Bicycle {
 		System.out.println("Calling Bicycle constructor...");
 	}
 
-	void goRide() {
+	public void goRide() {
 		System.out.println("I can ride only in Land");
 	}
 
-	void applyBrake() {
+	public void applyBrake() {
 		System.out.println("I can apply front and back brake");
 	}
 
-	void accelerateSpeed() {
-		acceleratedSpeed=acceleratedSpeed+20;
-		System.out.println("Speed of Bicycle: "+acceleratedSpeed);
-	}
+	public abstract void accelerateSpeed();
 	
-	void switchOnLights(){
+	public void switchOnLights(){
 		System.out.println("This is a single colored light..");
 	}
 

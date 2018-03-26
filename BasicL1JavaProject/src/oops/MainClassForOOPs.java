@@ -10,8 +10,10 @@ public class MainClassForOOPs {
 	void practiceOOPS() {
 
 		// object for Bicycle
-		Bicycle bicycle = new Bicycle();//1 bicycle cons - right
-		bicycle.accelerateSpeed();//40
+		//Cannot instantiate the type Bicycle - Bicycle is an abstract class
+		//Bicycle bicycle = new Bicycle();//1 bicycle cons - right
+		
+		//bicycle.accelerateSpeed();//40
 		//can I access changeGear() using bicycle method? - parent class can never access a child properties
 		//bicycle.changeGear(); - The method changeGear() is undefined for the type Bicycle
 

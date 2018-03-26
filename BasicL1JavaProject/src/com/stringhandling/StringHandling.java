@@ -13,7 +13,7 @@ public class StringHandling {
 		socialNetworkingSiteName2="acadSocialModified";
 		System.out.println(socialNetworkingSiteName2);
 		
-		Bicycle bicycle=new Bicycle();
+		//Bicycle bicycle=new Bicycle();
 		/*System.out.println(socialNetworkingSiteName);
 		
 		System.out.println("Equality of 2 Strings:");

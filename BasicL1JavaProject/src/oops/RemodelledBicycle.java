@@ -15,19 +15,25 @@ public class RemodelledBicycle extends Bicycle {
 
 	//overriding properties
 	@Override
-	void accelerateSpeed() {
+	public void accelerateSpeed() {
 		//can I access it here? - The field Bicycle.acceleratedSpeed is not visible
 		acceleratedSpeed=acceleratedSpeed+40;
 		System.out.println("Speed of Remodelled Bicycle: "+acceleratedSpeed);
 	}
 
 	@Override
-	void goRide() {
+	public void goRide() {
 		System.out.println("I can ride in both land and mountains");
 	}
 	
 	@Override
-	void switchOnLights() {
+	public void switchOnLights() {
 		System.out.println("This is a multi colored light..");
+	}
+
+	@Override
+	public void testMethodWithArgs(String test1, int test2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

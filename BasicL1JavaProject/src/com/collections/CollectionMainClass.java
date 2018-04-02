@@ -11,6 +11,7 @@ public class CollectionMainClass {
 		//creating a List
 		//List of String
 		List namesList=new ArrayList();
+		System.out.println("Changed....");
 		
 		//adding values to a list
 		namesList.add("Alex");//0

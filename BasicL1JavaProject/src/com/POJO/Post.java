@@ -64,4 +64,22 @@ public class Post {
 		this.canShare = canShare;
 	}
 
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return postedBy;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		Post post=(Post) obj;
+		return postedBy.equals(post.getPostedBy(true));
+	}
+	
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return postedBy.hashCode();//unique reference of each object
+	}
 }

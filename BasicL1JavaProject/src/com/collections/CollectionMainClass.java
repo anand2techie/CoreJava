@@ -10,8 +10,15 @@ public class CollectionMainClass {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 		// creating a List
 		// List of String
+=======
+		//creating a List
+		//List of String
+		List namesList=new ArrayList();
+		System.out.println("Changed....");
+>>>>>>> branch 'master' of https://github.com/anand2techie/CoreJava.git
 		
 		//<> --> Generic
 		List<String> namesList = new ArrayList<String>();

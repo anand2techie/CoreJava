@@ -2,12 +2,21 @@ package com.fullstack.rest.webservices.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
 public class User {
 	
+	@Size(min=4)
 	private String username;
 	private String location;
+	@Past
 	private Date birthDate;
 	
+	//to be used from client side from POST request
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public User(String username, String location, Date birthDate) {
 		this.username = username;
